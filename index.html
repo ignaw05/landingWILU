@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WILU — Software a medida</title>
+  <meta name="description" content="WILU es una agencia de software a medida. Transformamos problemas en soluciones digitales." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Fondo animado estilo mesh gradient -->
+  <div class="bg-blobs" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="bg-noise"></div>
+  </div>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <nav class="nav-inner">
+      <a href="#inicio" class="logo">WILU<span class="logo-dot">.</span></a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#problema-solucion">Solución</a></li>
+        <li><a href="#clientes">Clientes</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section id="inicio" class="hero">
+      <div class="hero-content">
+        <p class="hero-kicker reveal">Software a medida</p>
+        <h1 class="reveal">Transformamos <span class="grad-text">problemas</span><br />en <span class="grad-text">soluciones</span></h1>
+        <p class="hero-sub reveal">Convertimos planillas, papeles y procesos manuales en software de gestión moderno, con inteligencia artificial integrada.</p>
+        <div class="hero-actions reveal">
+          <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+          <a href="#contacto" class="btn btn-ghost">Hablemos</a>
+        </div>
+      </div>
+
+      <!-- Gráfico: mapa de sistema -->
+      <div class="hero-visual reveal">
+        <div class="system-map" aria-hidden="true">
+          <svg class="sys-lines" viewBox="0 0 400 340" fill="none" preserveAspectRatio="xMidYMid meet">
+            <path id="ln1" d="M200 170 L70 60" />
+            <path id="ln2" d="M200 170 L330 60" />
+            <path id="ln3" d="M200 170 L45 200" />
+            <path id="ln4" d="M200 170 L355 205" />
+            <path id="ln5" d="M200 170 L120 295" />
+            <path id="ln6" d="M200 170 L285 295" />
+            <circle class="sys-pulse" r="3.5">
+              <animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#ln1"/></animateMotion>
+            </circle>
+            <circle class="sys-pulse" r="3.5">
+              <animateMotion dur="3.1s" begin="0.4s" repeatCount="indefinite"><mpath href="#ln2"/></animateMotion>
+            </circle>
+            <circle class="sys-pulse" r="3.5">
+              <animateMotion dur="2.8s" begin="0.9s" repeatCount="indefinite"><mpath href="#ln3"/></animateMotion>
+            </circle>
+            <circle class="sys-pulse" r="3.5">
+              <animateMotion dur="3.4s" begin="1.3s" repeatCount="indefinite"><mpath href="#ln4"/></animateMotion>
+            </circle>
+            <circle class="sys-pulse" r="3.5">
+              <animateMotion dur="2.9s" begin="0.6s" repeatCount="indefinite"><mpath href="#ln5"/></animateMotion>
+            </circle>
+            <circle class="sys-pulse" r="3.5">
+              <animateMotion dur="3.2s" begin="1.7s" repeatCount="indefinite"><mpath href="#ln6"/></animateMotion>
+            </circle>
+          </svg>
+
+          <div class="sys-core">
+            <span class="sys-core-ring"></span>
+            <span class="sys-core-icon">⚙️</span>
+            <span class="sys-core-label">Tu sistema</span>
+          </div>
+
+          <div class="sys-node" style="--x:17.5%; --y:17.6%"><span>📦</span>Stock</div>
+          <div class="sys-node" style="--x:82.5%; --y:17.6%"><span>💰</span>Ventas</div>
+          <div class="sys-node" style="--x:11.2%; --y:58.8%"><span>🧾</span>Facturación</div>
+          <div class="sys-node" style="--x:88.7%; --y:60.3%"><span>📊</span>Reportes</div>
+          <div class="sys-node" style="--x:30%; --y:86.7%"><span>🤖</span>IA</div>
+          <div class="sys-node" style="--x:71.2%; --y:86.7%"><span>👥</span>Clientes</div>
+        </div>
+      </div>
+
+      <a href="#problema-solucion" class="scroll-hint" aria-label="Bajar">
+        <span class="mouse"><span class="wheel"></span></span>
+      </a>
+    </section>
+
+    <!-- ============ PROBLEMA → SOLUCIÓN ============ -->
+    <section id="problema-solucion" class="section">
+      <div class="section-inner">
+        <p class="section-kicker reveal">De lo manual a lo digital</p>
+        <h2 class="reveal">Problema <span class="grad-text">→</span> Solución</h2>
+
+        <!-- El problema -->
+        <div class="ps-block reveal">
+          <div class="ps-text">
+            <span class="ps-label ps-label-problem">El problema</span>
+            <h3>Lo manual no escala</h3>
+            <p>Planillas con mil versiones, papeles que se pierden, fórmulas que se rompen y datos que dependen de la memoria de una persona. Cada error se paga en tiempo y plata, y nadie sabe cuál es el número real del negocio.</p>
+            <ul class="ps-list ps-list-problem">
+              <li>Información duplicada y desactualizada</li>
+              <li>Errores de carga que nadie detecta a tiempo</li>
+              <li>Sin trazabilidad: ¿quién cambió qué y cuándo?</li>
+              <li>Horas perdidas en tareas repetitivas</li>
+            </ul>
+          </div>
+          <div class="ps-visual">
+            <div class="chaos-stack">
+              <div class="window old-window">
+                <div class="window-bar">
+                  <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                  <span class="window-title">gastos_FINAL_v7_AHORA_SI(2).xlsx</span>
+                  <span class="unsaved-badge">● sin guardar</span>
+                </div>
+                <div class="sheet">
+                  <div class="sheet-row sheet-head"><span>A</span><span>B</span><span>C</span><span>D</span></div>
+                  <div class="sheet-row" id="cell-row-1"><span></span><span></span><span></span><span></span></div>
+                  <div class="sheet-row" id="cell-row-2"><span></span><span></span><span></span><span></span></div>
+                  <div class="sheet-row" id="cell-row-3"><span></span><span></span><span></span><span></span></div>
+                  <div class="sheet-row sheet-error" id="cell-row-4"><span>#REF!</span><span>#DIV/0!</span><span>####</span><span>#N/A</span></div>
+                  <div class="sheet-row" id="cell-row-5"><span></span><span></span><span></span><span></span></div>
+                </div>
+                <div class="error-dialog" id="error-dialog">
+                  <span class="error-icon">⚠️</span>
+                  <span>Referencia circular detectada</span>
+                </div>
+              </div>
+              <div class="sticky-note sticky-1">anotar ventas de ayer!!</div>
+              <div class="sticky-note sticky-2">¿quién tiene la última versión?</div>
+              <div class="paper paper-1">📄 recibo_marzo.pdf <span class="paper-note">— ¿dónde quedó?</span></div>
+              <div class="paper paper-2">🧾 factura_proveedor (ilegible)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flecha de transformación -->
+        <div class="ps-divider reveal" aria-hidden="true">
+          <svg viewBox="0 0 24 60" fill="none">
+            <path class="arrow-path" d="M12 2 V50" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <path class="arrow-head" d="M5 46 L12 56 L19 46" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <span class="ps-divider-label"></span>
+        </div>
+
+        <!-- La solución -->
+        <div class="ps-block ps-block-solution reveal">
+          <div class="ps-text">
+            <span class="ps-label ps-label-solution">La solución</span>
+            <h3>Software a tu medida, con tus reglas de negocio</h3>
+            <p>No te adaptás vos al software: el software se adapta a vos. Relevamos cómo trabajás y construimos un sistema que entiende tu operación — tus precios, tus flujos de aprobación, tus alertas — y las aplica automáticamente, sin errores ni olvidos.</p>
+            <ul class="ps-list ps-list-solution">
+              <li>Una sola fuente de verdad, siempre actualizada</li>
+              <li>Reglas de negocio automáticas: validaciones, alertas y aprobaciones</li>
+              <li>Trazabilidad total de cada movimiento</li>
+              <li>Asistente de IA que responde con tus propios datos</li>
+            </ul>
+          </div>
+          <div class="ps-visual ps-visual-solution">
+            <!-- Sistema de gestión -->
+            <div class="window new-window">
+              <div class="window-bar">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="window-title">Tu sistema de gestión</span>
+                <span class="live-badge">● en vivo</span>
+              </div>
+              <div class="dash-layout">
+                <aside class="dash-sidebar">
+                  <span class="side-item active">▦ Panel</span>
+                  <span class="side-item">📦 Stock</span>
+                  <span class="side-item">💰 Ventas</span>
+                  <span class="side-item">🧾 Facturas</span>
+                  <span class="side-item">📊 Reportes</span>
+                </aside>
+                <div class="dashboard">
+                  <div class="dash-kpis">
+                    <div class="kpi"><span class="kpi-label">Ingresos</span><span class="kpi-value" id="kpi-1">$0</span></div>
+                    <div class="kpi"><span class="kpi-label">Pedidos</span><span class="kpi-value" id="kpi-2">0</span></div>
+                    <div class="kpi"><span class="kpi-label">Stock OK</span><span class="kpi-value" id="kpi-3">0%</span></div>
+                  </div>
+                  <div class="dash-chart" id="dash-chart">
+                    <div class="bar" style="--h:40%"></div>
+                    <div class="bar" style="--h:65%"></div>
+                    <div class="bar" style="--h:50%"></div>
+                    <div class="bar" style="--h:80%"></div>
+                    <div class="bar" style="--h:70%"></div>
+                    <div class="bar" style="--h:95%"></div>
+                  </div>
+                  <div class="dash-rows">
+                    <div class="dash-row" id="dash-row-1"><span class="row-icon">✓</span><span class="row-text"></span></div>
+                    <div class="dash-row" id="dash-row-2"><span class="row-icon">✓</span><span class="row-text"></span></div>
+                    <div class="dash-row" id="dash-row-3"><span class="row-icon">✓</span><span class="row-text"></span></div>
+                  </div>
+                  <div class="rule-toast" id="rule-toast">
+                    <span class="rule-icon">⚡</span>
+                    <span class="rule-text" id="rule-text"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ps-sub-row">
+              <!-- Notificaciones por WhatsApp -->
+              <div class="whatsapp-card">
+                <div class="wa-header">
+                  <div class="wa-avatar">W</div>
+                  <div>
+                    <span class="wa-name">WhatsApp Bot</span>
+                    <span class="wa-status">en línea</span>
+                  </div>
+                  <span class="wa-icons">📞 ⋮</span>
+                </div>
+                <div class="wa-body" id="wa-body"></div>
+              </div>
+
+              <!-- Chatbot animado -->
+              <div class="chatbot">
+                <div class="chat-header">
+                  <div class="chat-avatar">🤖</div>
+                  <div>
+                    <span class="chat-name">Asistente IA</span>
+                    <span class="chat-status">en línea</span>
+                  </div>
+                </div>
+                <div class="chat-body" id="chat-body"></div>
+                <div class="chat-input">
+                  <span class="chat-placeholder">Escribí tu consulta…</span>
+                  <span class="chat-send">➤</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CLIENTES ============ -->
+    <section id="clientes" class="section">
+      <div class="section-inner">
+        <p class="section-kicker reveal">Confían en nosotros</p>
+        <h2 class="reveal">Clientes</h2>
+        <div class="clients-grid">
+          <div class="client-card featured reveal">
+            <span class="client-icon">⚡</span>
+            <span class="client-name">Electricidad Lujan</span>
+            <span class="client-tag">Sistema de gestión</span>
+          </div>
+          <div class="client-card reveal">
+            <span class="client-icon">🏗️</span>
+            <span class="client-name">Tu empresa</span>
+            <span class="client-tag">Próximamente</span>
+          </div>
+          <div class="client-card reveal">
+            <span class="client-icon">🛒</span>
+            <span class="client-name">Tu comercio</span>
+            <span class="client-tag">Próximamente</span>
+          </div>
+          <div class="client-card reveal">
+            <span class="client-icon">🏥</span>
+            <span class="client-name">Tu organización</span>
+            <span class="client-tag">Próximamente</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROYECTOS ============ -->
+    <section id="proyectos" class="section">
+      <div class="section-inner">
+        <p class="section-kicker reveal">Lo que construimos</p>
+        <h2 class="reveal">Proyectos</h2>
+
+        <article class="project reveal">
+          <div class="project-visual vency-visual" aria-hidden="true">
+            <div class="mini-dash">
+              <div class="mini-dash-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="window-title">Vency</span></div>
+              <div class="mini-kpis">
+                <div class="mini-kpi">ARS <strong class="count" data-target="842" data-prefix="$" data-suffix="k">$0</strong></div>
+                <div class="mini-kpi">USD <strong class="count" data-target="12" data-prefix="$" data-suffix="k">$0</strong></div>
+                <div class="mini-kpi">MoM <strong class="count" data-target="14" data-prefix="+" data-suffix="%">+0%</strong></div>
+              </div>
+              <svg class="mini-line" viewBox="0 0 200 60" preserveAspectRatio="none">
+                <path class="line-path" d="M0,50 C25,42 35,46 55,35 S95,38 115,25 S160,20 200,8" fill="none" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+              <div class="mini-pie">
+                <div class="pie"></div>
+                <div class="pie-legend">
+                  <span><i class="sw sw1"></i>Hogar</span>
+                  <span><i class="sw sw2"></i>Servicios</span>
+                  <span><i class="sw sw3"></i>Ocio</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <span class="project-badge">Fintech · IA</span>
+            <h3>Vency</h3>
+            <p class="project-tagline">Gestión financiera premium con asistente de IA</p>
+            <p>Plataforma de seguimiento financiero personal y empresarial con base de datos en Supabase y un asistente de IA nativo impulsado por Google Gemini que analiza y proyecta flujos de caja, categorizaciones y tendencias de precios.</p>
+            <ul class="project-features">
+              <li>Dashboard interactivo con balances en tiempo real</li>
+              <li>Gastos recurrentes y proyección de flujo de caja</li>
+              <li>Estadísticas avanzadas con variaciones MoM y YoY por categoría</li>
+              <li>Vista calendario de actividad financiera</li>
+              <li>Chatbot de IA con contexto de tus datos</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="project project-alt reveal">
+          <div class="project-visual notaria-visual" aria-hidden="true">
+            <div class="mini-dash">
+              <div class="mini-dash-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="window-title">Notaria</span></div>
+              <div class="audit-demo">
+                <p class="audit-text" id="audit-text">Chat con validación…</p>
+                <div class="audit-arrow">✓</div>
+                <p class="audit-hash" id="audit-hash"></p>
+              </div>
+              <div class="arkiv-chain">
+                <span class="arkiv-node"></span><span class="arkiv-link"></span>
+                <span class="arkiv-node"></span><span class="arkiv-link"></span>
+                <span class="arkiv-node"></span><span class="arkiv-link"></span>
+                <span class="arkiv-node"></span>
+              </div>
+              <p class="arkiv-label">Arkiv · Web3</p>
+            </div>
+          </div>
+          <div class="project-info">
+            <span class="project-badge">Web3 · Auditoría</span>
+            <h3>Notaria <span class="hackathon-tag">🏆 Ganador Hackathon Punatech 26</span></h3>
+            <p class="project-tagline">Auditoría inmutable de conversaciones en Web3</p>
+            <p>Notaria es un auditor descentralizado de chats que permite verificar la autenticidad e inmutabilidad de conversaciones a través de Arkiv en Web3. Garantiza que ningún mensaje sea modificado retroactivamente, creando un registro permanente y verificable de todos los intercambios.</p>
+            <ul class="project-features">
+              <li>Auditoría inmutable de conversaciones en blockchain</li>
+              <li>Verificación descentralizada a través de Arkiv</li>
+              <li>Historial completo y no manipulable de mensajes</li>
+              <li>Validación criptográfica de autenticidad</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section id="contacto" class="section">
+      <div class="section-inner">
+        <p class="section-kicker reveal">¿Tenés un problema?</p>
+        <h2 class="reveal">Lo transformamos en solución</h2>
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <p>Contanos qué necesitás y te respondemos a la brevedad.</p>
+            <!-- TODO: reemplazar el número de WhatsApp y la URL de LinkedIn por los reales -->
+            <a class="contact-item" href="mailto:ignaciowuilloud@gmail.com">
+              <span class="contact-icon">✉️</span> ignaciowuilloud@gmail.com
+            </a>
+            <a class="contact-item" href="https://wa.me/5490000000000" target="_blank" rel="noopener">
+              <span class="contact-icon">💬</span> WhatsApp
+            </a>
+            <a class="contact-item" href="https://www.linkedin.com/in/tu-perfil" target="_blank" rel="noopener">
+              <span class="contact-icon">🔗</span> LinkedIn
+            </a>
+          </div>
+          <form class="contact-form reveal" id="contact-form">
+            <label>
+              Nombre
+              <input type="text" name="nombre" placeholder="Tu nombre" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" placeholder="tu@email.com" required />
+            </label>
+            <label>
+              Mensaje
+              <textarea name="mensaje" rows="4" placeholder="Contanos tu problema…" required></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> WILU — Software a medida</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
