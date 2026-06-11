@@ -10,6 +10,22 @@
   const mouse = { x: -9999, y: -9999 };
   const MOUSE_RADIUS = 140;
 
+  // Colores leídos del tema actual (se refrescan al cambiar de tema)
+  let dotColor = "rgba(160, 180, 255, 0.5)";
+  let lineRGB = "140, 160, 255";
+  let lineAlpha = 0.1;
+
+  function refreshColors() {
+    const cs = getComputedStyle(document.documentElement);
+    const dotRGB = cs.getPropertyValue("--particle-rgb").trim() || "160, 180, 255";
+    const dotAlpha = cs.getPropertyValue("--particle-alpha").trim() || "0.5";
+    lineRGB = cs.getPropertyValue("--particle-line-rgb").trim() || "140, 160, 255";
+    lineAlpha = parseFloat(cs.getPropertyValue("--particle-line-alpha")) || 0.1;
+    dotColor = `rgba(${dotRGB}, ${dotAlpha})`;
+  }
+  refreshColors();
+  window.addEventListener("themechange", refreshColors);
+
   function init() {
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
@@ -51,7 +67,7 @@
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(160, 180, 255, 0.5)";
+      ctx.fillStyle = dotColor;
       ctx.fill();
     }
 
@@ -64,7 +80,7 @@
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
-          ctx.strokeStyle = `rgba(140, 160, 255, ${0.1 * (1 - d / 110)})`;
+          ctx.strokeStyle = `rgba(${lineRGB}, ${lineAlpha * (1 - d / 110)})`;
           ctx.lineWidth = 1;
           ctx.stroke();
         }
@@ -383,15 +399,6 @@ navLinks.querySelectorAll("a").forEach((a) =>
   })
 );
 
-/* ================= Formulario de contacto (mailto) ================= */
-document.getElementById("contact-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  const data = new FormData(e.target);
-  const subject = encodeURIComponent(`Consulta de ${data.get("nombre")} — WILU`);
-  const bodyText = encodeURIComponent(`${data.get("mensaje")}\n\n— ${data.get("nombre")} (${data.get("email")})`);
-  window.location.href = `mailto:ignaciowuilloud@gmail.com?subject=${subject}&body=${bodyText}`;
-});
-
 /* ================= Scroll suave con inercia ================= */
 (function smoothScroll() {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -468,6 +475,32 @@ document.getElementById("contact-form").addEventListener("submit", (e) => {
       target = clamp(top);
       start();
     });
+  });
+})();
+
+/* ================= Cambio de tema (claro/oscuro) ================= */
+(function themeToggle() {
+  const btn = document.getElementById("theme-toggle");
+  const root = document.documentElement;
+
+  function apply(theme) {
+    if (theme === "light") root.setAttribute("data-theme", "light");
+    else root.removeAttribute("data-theme");
+    btn.setAttribute("aria-pressed", String(theme === "light"));
+    // Avisamos a las partículas para que relean sus colores
+    window.dispatchEvent(new Event("themechange"));
+  }
+
+  // Preferencia guardada, o el esquema del sistema como punto de partida
+  let saved = null;
+  try { saved = localStorage.getItem("wilu-theme"); } catch (e) {}
+  const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+  apply(saved || (prefersLight ? "light" : "dark"));
+
+  btn.addEventListener("click", () => {
+    const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+    apply(next);
+    try { localStorage.setItem("wilu-theme", next); } catch (e) {}
   });
 })();
 
