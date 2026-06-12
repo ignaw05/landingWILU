@@ -1,0 +1,11 @@
+name: Wait 20 minutes
+
+on:
+  workflow_dispatch
+
+jobs:
+  wait:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sleep for 20 minutes
+        run: sleep 1200
